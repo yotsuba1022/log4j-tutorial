@@ -1,0 +1,34 @@
+Configuration:
+  status: warn
+
+  properties:
+    property:
+      name: filename
+      value: /Users/Carl/work/Project/java/log4j-tutorial/logs/test-yml.log
+
+  appenders:
+    Console:
+      name: Console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    File:
+      name: File_Appender
+      fileName: ${filename}
+      PatternLayout:
+              Pattern: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+
+  loggers:
+    ROOT:
+      level: debug
+      AppenderRef:
+        - ref: Console_Appender
+
+    logger:
+      - name: uruz7.tutorial.log4j.report
+        level: info
+        AppenderRef:
+          - ref: File_Appender
+            level: error
+
+
